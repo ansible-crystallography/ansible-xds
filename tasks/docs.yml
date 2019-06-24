@@ -1,0 +1,16 @@
+---
+# install XDS documentation
+
+- name: create XDS documentation directory
+  file:
+    path: "{{ xds_docs_install_dir }}"
+    state: directory
+
+- name: install XDS documnetation
+  unarchive:
+    src: "{{ xds_docs_download_url }}"
+    dest: "{{ xds_docs_install_dir }}"
+    owner: "{{ xds_owner }}"
+    group: "{{ xds_group }}"
+    remote_src: yes
+    extra_opts: "--strip-components=1"

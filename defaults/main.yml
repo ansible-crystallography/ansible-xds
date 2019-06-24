@@ -1,0 +1,31 @@
+---
+# defaults for crystal-multi-tool.xds
+
+# license agreement
+#   set to yes if you agree to XDS's license
+xds_non_commerical: no
+
+# install XDS suite
+xds: yes
+
+xds_download_url: "ftp://ftp.mpimf-heidelberg.mpg.de/pub/kabsch/XDS-INTEL64_Linux_x86_64.tar.gz"
+xds_download_dir: "/tmp"
+
+xds_install_dir: "/usr/local/bin"
+xds_owner: '{{ cmt_owner | default("root") }}'
+xds_group: '{{ cmt_group | default("root") }}'
+xds_mode: "{{ cmt_mode | default(0755) }}"
+
+# install XDS companion tools
+xds_extras: yes
+
+# install XDS documentation
+xds_docs: no
+
+xds_docs_download_url: "ftp://ftp.mpimf-heidelberg.mpg.de/pub/kabsch/XDS_html_doc.tar.gz"
+xds_docs_download_dir: "{{ xds_download_dir }}"
+
+xds_docs_install_dir: "/usr/share/docs/xds"
+xds_docs_owner: "{{ xds_owner }}"
+xds_docs_group: "{{ xds_group }}"
+xds_docs_ mode: "{{ xds_mode }}"

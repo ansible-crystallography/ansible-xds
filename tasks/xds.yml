@@ -1,0 +1,22 @@
+---
+# install XDS suite
+
+- name: create XDS install directory
+  file:
+    path: "{{ xds_download_dir }}"
+    state: directory
+
+- name: download XDS
+  get_url:
+    url: "{{ xds_download_url }}"
+    dest: "{{ xds_download_dir }}/xds.tar.gz"
+
+- name: install XDS
+  unarchive:
+    src: "{{ xds_download_dir }}/xds.tar.gz"
+    dest: "{{ xds_install_dir }}"
+    owner: "{{ xds_owner }}"
+    group: "{{ xds_group }}"
+    mode: "{{ xds_mode }}"
+    copy: no
+    extra_opts: "--strip-components=1"

@@ -1,0 +1,20 @@
+---
+# main tasks file for eslerm.xds
+
+- name: check XDS license agreement variable
+  fail:
+    msg: "The XDS License only allows non-commercial users to use the specified source code. Please see the README.md"
+  when: xds_non_commerical == false
+
+- include_tasks: xds.yml
+  when: xds == true
+  tags: xds
+
+- include_tasks: extras.yml
+  when: xds_extras == true
+  tags: xds_extras
+
+- include_tasks: docs.yml
+  when: xds_docs == true
+  tags: xds_docs
+

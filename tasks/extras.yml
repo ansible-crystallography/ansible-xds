@@ -1,0 +1,36 @@
+---
+# install XDS companion software
+
+- name: install XDS companion software
+  get_url:
+    url: "{{ item }}"
+    dest: "{{ xds_install_dir }}"
+    owner: "{{ xds_owner }}"
+    group: "{{ xds_group }}"
+    mode: "{{ xds_mode }}"
+  with_items:
+    - "ftp://turn5.biologie.uni-konstanz.de/pub/linux_bin/XDS-viewer"
+    - "ftp://turn5.biologie.uni-konstanz.de/pub/linux_bin/adxv"
+    - "ftp://turn5.biologie.uni-konstanz.de/pub/linux_bin/checkcentering"
+    - "ftp://turn5.biologie.uni-konstanz.de/pub/linux_bin/generate_XDS.INP"
+   #- "ftp://turn5.biologie.uni-konstanz.de/pub/linux_bin/generate_XPARM.XDS"
+    - "ftp://turn5.biologie.uni-konstanz.de/pub/linux_bin/rlat4xds"
+    - "ftp://turn5.biologie.uni-konstanz.de/pub/linux_bin/spot2pdb"
+    - "ftp://turn5.biologie.uni-konstanz.de/pub/linux_bin/xds_nonisomorphism"
+    - "ftp://turn5.biologie.uni-konstanz.de/pub/linux_bin/xdscc12"
+    - "ftp://turn5.biologie.uni-konstanz.de/pub/linux_bin/xdsgui"
+    - "ftp://turn5.biologie.uni-konstanz.de/pub/linux_bin/xdsstat"
+    - "ftp://turn5.biologie.uni-konstanz.de/pub/linux_bin/xscale_isocluster"
+    - "ftp://turn5.biologie.uni-konstanz.de/pub/linux_bin/xscale_maxcc12"
+    - "ftp://turn5.biologie.uni-konstanz.de/pub/linux_bin/xxdiff.centos7"
+
+- name: create XDS companion tool symbolic links
+  file:
+    src: "{{ xds_install_dir }}/{{ item.path }}"
+    dest: "{{ xds_install_dir }}/{{ item.dest }}"
+    state: link
+  with_items:
+    - { path: "xdscc12", dest: "xscalecc12" }
+    - { path: "XDS-viewer", dest: "xdsviewer" }
+    - { path: "XDS-viewer", dest: "xds-viewer" }
+    - { path: "xxdiff.centos7", dest: "xxdiff" }
